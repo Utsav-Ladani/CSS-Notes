@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            border: solid 1px red;
+            color: green;
+            background-color: gray;
+        }
+
+        .list {
+            border: dashed 2px blue;
+            color: yellow;
+        }
+
+        @layer base, enhanced;
+
+        @layer base {
+            .item {
+                border: solid 3px orange;
+                color: purple;
+            }
+        }
+
+        @layer enhanced {
+            .item {
+                border: dotted 3px black;
+                color: white;
+            }
+
+            .item-rever-layer {
+                border: revert-layer;
+                color: revert-layer;
+            }
+        }
+
+        /** Inherit from aprent */
+        .item-inherit {
+            border: inherit;
+            color: inherit;
+        }
+
+        /** Initial value of W3C */
+        .item-initial {
+            border: initial;
+            color: initial;
+        }
+
+        /**
+         * Unset value
+         * If the property is inherited, it acts like inherit, otherwise it acts like initial.
+         */
+        .item-unset {
+            border: unset;
+            color: unset;
+        }
+
+        /**
+         * Revert value
+         * If the property is inherited, it acts like inherit, otherwise it use User Agent stylesheet.
+         */
+        .item-revert {
+            border: revert;
+            color: revert;
+        }
+
+        /**
+         * apply to all properties
+         */
+        .item-all {
+            all: revert;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <ul class="list">
+            <li class="item">Default</li>
+            <li class="item item-inherit">Inherit</li>
+            <li class="item item-initial">Initial</li>
+            <li class="item item-unset">Unset</li>
+            <li class="item item-revert">Revert</li>
+            <li class="item item-rever-layer">Revert Layer</li>
+            <li class="item item-all">all</li>
+        </ul>
+    </div>
+</body>
+</html>
