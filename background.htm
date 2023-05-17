@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .main {
+            background-image: url("/assets/nature.jpg");
+            background-repeat: no-repeat;
+            /* background-attachment: local; */
+            /* background-attachment: fixed; */
+            background-attachment: scroll;
+            height: 400px;
+            width: 70%;
+            overflow: scroll;
+            color: yellow;
+        }
+
+        .multiple-bg {
+            background: url("/assets/nature-small.jpg"), url("/assets/nature.jpg"), pink;
+            background-repeat: repeat-y, no-repeat;
+            height: 400px;
+            width: 70%;
+            overflow: scroll;
+            color: greenyellow;
+        }
+
+        .bg {
+            padding: 20px;
+            border: 10px dotted red;
+            font-size: 200px;
+            font-weight: bold;
+            height: 400px;
+            width: 70%;
+            
+            background-image: url("/assets/nature.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            background-clip: border-box;
+            /* background-clip: padding-box; */
+            /* background-clip: content-box; */
+
+            background-origin: border-box;
+            /* background-origin: padding-box; */
+            /* background-origin: content-box; */
+
+            /* background-clip: text;
+            color: transparent; */ 
+        }
+
+        .bg-small {
+            padding: 20px;
+            border: 10px dotted red;
+            font-size: 200px;
+            font-weight: bold;
+            height: 400px;
+            width: 70%;
+            
+            background-image: url("/assets/nature-small.jpg");
+            /* background-repeat: no-repeat; */
+            background-repeat: round;
+            /* background-repeat: no-repeat space; */
+
+            /* background-position: bottom 50px right 100px; */
+            background-position: bottom center;
+
+            /* background-size: contain;
+            background-repeat: no-repeat; */
+
+            /* background-size: 500px 200px;
+            background-repeat: no-repeat; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-small"></div>
+    <div class="bg">
+        Hello world
+    </div>
+    <div class="multiple-bg">
+        Hello
+    </div>
+    <h1>The background-attachment Property</h1>
+    <div class="main">
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>If you do not see any scrollbars, try to resize the browser window.</p>
+    </div>
+    <div class="main">
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>The background-image is fixed. Try to scroll down the page.</p>
+        <p>If you do not see any scrollbars, try to resize the browser window.</p>
+    </div>
+</body>
+
+</html>
