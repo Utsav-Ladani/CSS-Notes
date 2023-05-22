@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Site Animation</title>
+
+	<style>
+		:root {
+			font-size: 20px;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		main {
+			height: 100vh;
+			/* height: 100dvh; */
+			height: 100svh;
+			/* height: 100lvh; */
+			width: 100%;
+
+			min-height: 800px;
+
+			display: grid;
+			grid-template:
+				"header header header" auto
+				"column column column" 1fr
+				"footer footer footer" auto
+				/ 1fr 3fr 1fr;
+			gap: 0.4rem;
+
+			position: relative;
+		}
+
+		main {
+			border-radius: 0.1em;
+		}
+
+		header,
+		footer {
+			background-color: #ffeed2;
+			padding: 30px;
+			text-align: center;
+			font-size: 2em;
+		}
+
+		header {
+			grid-area: header;
+
+			width: 100%;
+			height: 4rem;
+			padding: 0 1em;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			position: sticky;
+			top: 0;
+
+			z-index: 10;
+		}
+
+		footer {
+			grid-area: footer;
+		}
+
+		.column {
+			grid-area: column;
+
+			display: grid;
+			/* grid-template:
+                "left-sidebar content right-sidebar" 1fr
+                / minmax(200px, 1fr) 3fr minmax(200px, 1fr); */
+			grid-template:
+				"content" 1fr
+				/ 1fr;
+			gap: 0.4em;
+
+			position: sticky;
+			top: 4em;
+		}
+
+		.column>* {
+			border-radius: 0.1em;
+		}
+
+		aside,
+		nav {
+			background-color: #c0e3ff;
+			padding: 30px;
+			text-align: center;
+			font-size: 1.5em;
+
+			height: calc(100vh - 4rem - 0.4rem);
+
+			position: sticky;
+			top: 4.4rem;
+
+			overflow: hidden auto;
+			display: none;
+		}
+
+		.left {
+			grid-area: left-sidebar;
+		}
+
+		.right {
+			grid-area: right-sidebar;
+		}
+
+		.menu,
+		.ads {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			text-align: left;
+			display: flex;
+			flex-direction: column;
+			gap: 0.4em;
+		}
+
+		.menu>li,
+		.ads>li {
+			font-size: 0.6em;
+			border-radius: 0.1em;
+		}
+
+		.menu>li {
+			padding: 0.5em;
+			background-color: #e4f3ff;
+		}
+
+		.ads>li {
+			text-align: center;
+			padding: 4em 0;
+			background-color: #e4f3ff;
+		}
+
+		section {
+			background-color: #ddebff;
+			padding: 30px;
+			text-align: center;
+			font-size: 1em;
+
+			grid-area: content;
+
+			z-index: -1;
+		}
+
+		.content__grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 1.2em;
+		}
+
+		.box {
+			border-radius: 0.2em;
+			background-color: #5b7cff;
+			color: #fff;
+
+			height: 100%;
+			aspect-ratio: 1 / 1;
+			opacity: 0;
+		}
+
+		.box:nth-child(odd) {
+			transform: translate(-50%, 0%);
+		}
+
+		.box:nth-child(even) {
+			transform: translate(50%, 0%);
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+
+		@keyframes slideIn {
+			to {
+				transform: translate(0, 0);
+			}
+		}
+
+		.animate {
+			animation: fadeIn 0.8s ease-in-out forwards 0.4s,
+				slideIn 0.8s ease-in-out forwards;
+		}
+
+		.rotate {
+			display: block;
+			height: 4em;
+			width: 4em;
+			background: conic-gradient(#ff5858, #f09819, #6afd76, #1e90ff, #ff5858);
+
+			animation: rotateAnime 0.5s linear infinite paused;
+
+			rotate: 0;
+			transition: rotate 1s cubic-bezier(0.5, 1, 1, 1);
+		}
+
+		.rotate:hover {
+			animation-play-state: running;
+			rotate: -270deg;
+		}
+
+		@keyframes rotateAnime {
+			to {
+				transform: rotate(360deg);
+			}
+		}
+
+		.box-2 {
+			background-image: url(/assets/dark-bg.webp);
+			background-size: cover;
+			position: relative;
+		}
+
+		.dots {
+			position: absolute;
+			bottom: 50px;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		.dot {
+			display: inline-block;
+			height: 0.6em;
+			aspect-ratio: 1 / 1;
+			backdrop-filter: blur(10px);
+			background-color: rgba(255, 255, 255, 0.449);
+			border-radius: 50%;
+			animation: dotAnime 1s ease-in-out infinite;
+		}
+
+		@keyframes dotAnime {
+			30% {
+				background-color: rgba(144, 255, 144, 0.449);
+			}
+
+			50% {
+				transform: translateY(-1em);
+			}
+
+			70% {
+				background-color: rgba(251, 255, 0, 0.449);
+			}
+		}
+
+		.dot-center {
+			transform: translateY(-0.2em);
+			animation: dotAnimeCenter 1s ease-in-out infinite;
+		}
+
+		@keyframes dotAnimeCenter {
+			50% {
+				transform: translateY(-1.4em);
+			}
+		}
+
+		/** SCSS */
+		/* @for $i from 1 through 10 {
+            .dot:nth-child(#{$i}) {
+                animation-delay: 100ms * $i;
+            }
+        } */
+
+		/** Auto generated css */
+		.dot:nth-child(1) {
+			animation-delay: -100ms;
+		}
+
+		.dot:nth-child(2) {
+			animation-delay: -200ms;
+		}
+
+		.dot:nth-child(3) {
+			animation-delay: -300ms;
+		}
+
+		.dot:nth-child(4) {
+			animation-delay: -400ms;
+		}
+
+		.dot:nth-child(5) {
+			animation-delay: -500ms;
+		}
+
+		.dot:nth-child(6) {
+			animation-delay: 600ms;
+		}
+
+		.dot:nth-child(7) {
+			animation-delay: 700ms;
+		}
+
+		.dot:nth-child(8) {
+			animation-delay: 800ms;
+		}
+
+		.dot:nth-child(9) {
+			animation-delay: 900ms;
+		}
+
+		.dot:nth-child(10) {
+			display: none;
+			animation-delay: 1000ms;
+		}
+
+		/** Text animation */
+		.text-animation-wrapper {
+			width: 100%;
+			color: rgb(0, 203, 0);
+			background-color: black;
+			margin-top: 2em;
+			padding: 1em .4em;
+			font-family: sans-serif;
+			font-size: 1.4em;
+
+			position: relative;
+		}
+
+		.animated-text::after {
+			content: '';
+			padding: 0 .3em;
+			margin-left: .2em;
+			background-color: white;
+
+			animation: blinking .4s ease-in infinite alternate;
+		}
+
+		@keyframes blinking {
+			0% {
+				opacity: 0;
+			}
+			30%, 100% {
+				opacity: 1;
+			}
+		}
+
+		.animated-text-2 {
+			position: relative;
+			font-family: monospace;
+		}
+
+
+		.animated-text-2::before {
+			position: absolute;
+			content: '';
+			inset: 0;
+			background-color: black;
+
+			animation: typewriter 3.5s steps(7, jump-none) infinite;
+		}
+
+		.animated-text-2::after {
+			position: absolute;
+			content: '';
+			left: .1em;
+			height: 1em;
+			width: 0.1em;
+			background-color: white;
+
+			animation: 	cursor-moving 3.5s steps(7, jump-none) infinite,
+						cursor-blinking .5s linear infinite;
+		}
+
+		@keyframes typewriter {
+			to {
+				left: 100%;
+			}
+		}
+
+		@keyframes cursor-moving {
+			to {
+				left: calc( 100% + .1em);
+			}
+		}
+
+		@keyframes cursor-blinking {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+
+		.btn {
+			position: relative;
+			width: 150px;
+			height: 200px;
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			color: white;
+			background-color: black;
+			
+			border: none;
+			border-radius: .4em;
+
+			margin: 2em;
+			overflow: hidden;
+		}
+
+		.btn::before {
+			content: '';
+			position: absolute;
+			width: 85px;
+			height: 150%;
+			background: linear-gradient( 90deg, #00ccff, #d500f9);
+			animation: rotateBtn 3s linear infinite;
+		}
+
+		.btn::after {
+			content: '';
+			position: absolute;
+			inset: .4em;
+			background-color: black;
+			border-radius: .4em;
+		}
+
+		.btn:hover::before {
+			animation-duration: 1s;
+		}
+
+		.text {
+			z-index: 2;
+			font-size: 2em;
+		}
+
+		@keyframes rotateBtn {
+			to {
+				transform: rotate(360deg);
+			}
+		}
+
+	</style>
+</head>
+
+<body>
+	<main>
+		<header>Header</header>
+		<div class="column">
+			<nav class="left">
+				<ul class="menu">
+					<li>Link 1</li>
+					<li>Link 2</li>
+					<li>Link 3</li>
+					<li>Link 4</li>
+					<li>Link 5</li>
+					<li>Link 6</li>
+				</ul>
+			</nav>
+			<section>
+				<div class="content__grid">
+					<div class="box">
+						<span class="rotate"></span>
+						<span class="rotate"></span>
+					</div>
+					<div class="box box-2">
+						<div class="dots">
+							<span class="dot dot-1"></span>
+							<span class="dot dot-2"></span>
+							<span class="dot dot-3"></span>
+							<span class="dot dot-4"></span>
+							<span class="dot dot-5 dot-center"></span>
+							<span class="dot dot-6"></span>
+							<span class="dot dot-7"></span>
+							<span class="dot dot-8"></span>
+							<span class="dot dot-9"></span>
+							<span class="dot dot-10"></span>
+						</div>
+					</div>
+					<div class="box">
+						<div class="text-animation-wrapper">
+							<span class="animated-text">Hello</span>
+						</div>
+					</div>
+					<div class="box">
+						<div class="text-animation-wrapper">
+							<span class="animated-text-2">Matrix</span>
+						</div>
+					</div>
+					<div class="box">
+						<button class="btn">
+							<span class="text">
+								Matrix
+							</span>
+						</button>
+					</div>
+					<div class="box">6</div>
+					<div class="box">7</div>
+					<div class="box">8</div>
+					<div class="box">9</div>
+					<div class="box">10</div>
+					<div class="box">1</div>
+					<div class="box">2</div>
+					<div class="box">3</div>
+					<div class="box">4</div>
+					<div class="box">5</div>
+					<div class="box">6</div>
+					<div class="box">7</div>
+					<div class="box">8</div>
+					<div class="box">9</div>
+					<div class="box">10</div>
+					<div class="box">1</div>
+					<div class="box">2</div>
+					<div class="box">3</div>
+					<div class="box">4</div>
+					<div class="box">5</div>
+					<div class="box">6</div>
+					<div class="box">7</div>
+					<div class="box">8</div>
+					<div class="box">9</div>
+					<div class="box">10</div>
+				</div>
+			</section>
+			<aside class="right">
+				<ul class="ads">
+					<li>Ads 1</li>
+					<li>Ads 2</li>
+					<li>Ads 3</li>
+					<li>Ads 4</li>
+					<li>Ads 5</li>
+					<li>Ads 6</li>
+				</ul>
+			</aside>
+		</div>
+		<footer>Footer</footer>
+	</main>
+	<script src="site-animation.js"></script>
+</body>
+
+</html>
